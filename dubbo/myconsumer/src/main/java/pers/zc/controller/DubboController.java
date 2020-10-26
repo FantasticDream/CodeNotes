@@ -20,15 +20,15 @@ import java.lang.reflect.Method;
 @RequestMapping("/test")
 public class DubboController {
 
-    @Resource
-    private SayHello sayHello;
+//    @Resource
+//    private SayHello sayHello;
 
     @Resource
     ApplicationContext applicationContext;
 
     @GetMapping("/dubbo")
     public String say() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Object sayHello = applicationContext.getBean("SayHello");
+        Object sayHello = applicationContext.getBean("demoService");
         Class clazz = Class.forName("pers.zc.service.SayHello");
         Method testsay = clazz.getMethod("testsay", String.class);
         String test = (String)testsay.invoke(sayHello, "test");
